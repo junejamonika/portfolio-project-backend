@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const dbConfig = require("./app/config/db.config");
+const config = require("./app/config/");
 var bodyParser = require('body-parser');
 var bcrypt = require("bcryptjs");
 
@@ -21,9 +21,10 @@ app.use(bodyParser.urlencoded({
 
 const db = require("./app/models");
 const User = db.user;
+const About = db.about;
 
 db.mongoose
-   .connect(dbConfig.url, {
+   .connect(config.dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -65,6 +66,19 @@ function initial() {
         }
 
         console.log("added 'user' to user collection");
+      });
+    }
+  });
+  About.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new About({
+        description: "This is test description",
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'description' to about collection");
       });
     }
   });
