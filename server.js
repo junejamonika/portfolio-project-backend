@@ -6,11 +6,7 @@ var bcrypt = require("bcryptjs");
 
 const app = express();
 
-var corsOptions = {
-  origin: process.env.CLIENT_URL
-};
-
-app.use(cors(corsOptions));
+app.use(cors({ origin: ['http://localhost:3000', process.env.CLIENT_URL], credentials: true }))
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
