@@ -6,7 +6,7 @@ var bcrypt = require("bcryptjs");
 
 const app = express();
 
-app.use(cors({ origin: ['http://localhost:3000', process.env.CLIENT_URL, 'https://smeet-makwana.netlify.app/'], headers: ["Content-Type"], credentials: true }))
+app.use(cors({ origin: "*", headers: ["Content-Type","x-access-token"], credentials: true }))
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
