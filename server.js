@@ -8,6 +8,13 @@ const app = express();
 
 app.use(cors({ origin: ['http://localhost:3000', process.env.CLIENT_URL, 'https://smeet-makwana.netlify.app/'], headers: ["Content-Type"], credentials: true }))
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
