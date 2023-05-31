@@ -10,7 +10,7 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/faqs", [authJwt.verifyToken], controller.faqs);
+  app.get("/api/faqs", controller.faqs);
   app.post("/api/faq", [authJwt.verifyToken], controller.create);
   app.get("/api/faq/:id", [authJwt.verifyToken], controller.edit);
   app.put("/api/faq/:id", [authJwt.verifyToken], controller.update);
