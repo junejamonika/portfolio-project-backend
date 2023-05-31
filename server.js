@@ -6,7 +6,11 @@ var bcrypt = require("bcryptjs");
 
 const app = express();
 
-app.use(cors({ origin: "*", headers: ["Content-Type","x-access-token"], credentials: true }))
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://smeet-makwana.netlify.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token");
+  next();
+});
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
