@@ -15,9 +15,10 @@ app.use(function(req, res, next) {
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
 
 const db = require("./app/models");
@@ -43,10 +44,47 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to this application." });
 });
 
+const path = require ('path');
+const multer = require ('multer');
+
+// storage engine for multer
+const storageEngine = multer.diskStorage({
+  destination: "./public/uploads/",
+  filename: function (req, file, callback) {
+    callback(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+// file filter for multer
+const fileFilter = (req, file, callback) => {
+  let pattern = /jpg|png|svg/; // reqex
+
+  if (pattern.test(path.extname(file.originalname))) {
+    callback(null, true);
+  } else {
+    callback("Error: not a valid file");
+  }
+};
+
+// initialize multer
+const upload = multer({
+  storage: storageEngine,
+  fileFilter,
+});
+
+
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/faq.routes")(app);
+require("./app/routes/about.routes")(app);
+// app.post("/api/value", upload.single('image'), (req,res) => {
+//   console.log(req.file, "new file test")
+//   res.json (req.file).status (200);
+// });
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8082;
