@@ -81,10 +81,8 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/faq.routes")(app);
 require("./app/routes/about.routes")(app);
-// app.post("/api/value", upload.single('image'), (req,res) => {
-//   console.log(req.file, "new file test")
-//   res.json (req.file).status (200);
-// });
+require("./app/routes/work.routes")(app);
+require("./app/routes/contact.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8082;

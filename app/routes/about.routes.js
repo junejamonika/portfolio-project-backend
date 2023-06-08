@@ -11,6 +11,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/about-me", [], controller.aboutMe);
+  app.put("/api/about-me", [], controller.update);
 
   // Values
   app.get("/api/values", [], controller.values);
@@ -35,5 +36,4 @@ module.exports = function(app) {
   app.post("/api/experience", [authJwt.verifyToken], controller.addWorkExperience);
   app.put("/api/experience/:id", [authJwt.verifyToken], controller.updateWorkExperience);
   app.delete("/api/delete-experience/:id", [authJwt.verifyToken], controller.deleteWorkExperience);
-
 };

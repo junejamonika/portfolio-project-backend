@@ -12,5 +12,7 @@ db.value = require("./value.model");
 db.tool = require("./tool.model");
 db.passion_project = require("./passion-project.model");
 db.work_experience = require("./work-experience.model");
+db.work = require("./work.model");
+db.contact = require("./contact.model");
 
 module.exports = db;
