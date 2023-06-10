@@ -14,5 +14,6 @@ db.passion_project = require("./passion-project.model");
 db.work_experience = require("./work-experience.model");
 db.work = require("./work.model");
 db.contact = require("./contact.model");
+db.service = require("./service.model");
 
 module.exports = db;

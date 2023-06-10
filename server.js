@@ -83,6 +83,7 @@ require("./app/routes/faq.routes")(app);
 require("./app/routes/about.routes")(app);
 require("./app/routes/work.routes")(app);
 require("./app/routes/contact.routes")(app);
+require("./app/routes/service.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8082;
