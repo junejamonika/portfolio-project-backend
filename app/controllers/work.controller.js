@@ -48,6 +48,7 @@ exports.create = (req, res) => {
     name: req.body.name,
     type: req.body.type,
     title: req.body.title,
+    status: req.body.status,
     accomplishments: JSON.parse(req.body.accomplishments),
     tags: JSON.parse(req.body.tags),
     images: images,
@@ -104,6 +105,7 @@ exports.update = (req, res) => {
       data.name = req.body.name;
       data.type = req.body.type;
       data.title = req.body.title;
+      data.status = req.body.status;
       data.accomplishments = JSON.parse(req.body.accomplishments);
       data.tags = JSON.parse(req.body.tags);
       if (req.files.length > 0) {
@@ -180,7 +182,6 @@ exports.deleteWork = (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err, "zmhdsvgm");
       res.status(500).send({
         message: "Cannot delete Work",
       });

@@ -6,6 +6,7 @@ const Work = mongoose.model(
     name: String,
     type: String,
     title: String,
+    status: String,
     accomplishments: Array,
     tags: Array,
     images: Array
