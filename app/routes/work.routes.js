@@ -11,8 +11,8 @@ module.exports = function(app) {
   });
 
   app.get("/api/work", [], controller.workList);
-  app.post("/api/work", [authJwt.verifyToken, upload.array('images', 5)], controller.create);
+  app.post("/api/work", [authJwt.verifyToken, upload.array('images', 7)], controller.create);
   app.get("/api/work/:id", [authJwt.verifyToken], controller.edit);
-  app.put("/api/work/:id", [authJwt.verifyToken, upload.array('images', 5)], controller.update);
+  app.put("/api/work/:id", [authJwt.verifyToken, upload.array('images', 7)], controller.update);
   app.delete("/api/delete-work/:id", [authJwt.verifyToken], controller.deleteWork);
 };
