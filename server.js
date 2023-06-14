@@ -41,7 +41,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to this application." });
+  res.json({ message: "Welcome to smeet makwana application." });
 });
 
 const path = require ('path');
