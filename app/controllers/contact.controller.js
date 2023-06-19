@@ -1,6 +1,7 @@
 const db = require("../models");
 const Contact = db.contact;
 var fs = require("fs");
+const MailService = require("../services/mailer");
 
 exports.contactList = (req, res) => {
   Contact.find({}, function (err, contacts) {
@@ -30,6 +31,12 @@ exports.create = (req, res) => {
   obj
     .save(obj)
     .then((data) => {
+      MailService({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        services: data.services.join(", "),
+      });
       res.send({ success: 1, message: "Contact Added Successfully" });
     })
     .catch((err) => {
